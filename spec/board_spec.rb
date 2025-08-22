@@ -100,5 +100,23 @@ RSpec.describe Board do
       board.grid = [["X", "2", "3"], ["X", "5", "6"], ["X", "8", "9"]]
       expect(board.winner).to eq("X")
     end
+
+    it "returns 'X' when the main diagonal is all X" do
+      board = Board.new
+      board.grid = [["X", "2", "3"], ["4", "X", "6"], ["7", "8", "X"]]
+      expect(board.winner).to eq("X")
+    end
+
+    it "returns 'O' when the anti-diagonal is all O" do
+      board = Board.new
+      board.grid = [["1", "2", "O"], ["4", "O", "6"], ["O", "8", "9"]]
+      expect(board.winner).to eq("O")
+    end
+
+    it "returns nil when there is no winner" do
+      board = Board.new
+      board.grid = [["X", "O", "X"], ["O", "X", "O"], ["O", "X", "O"]]
+      expect(board.winner).to be_nil
+    end
   end
 end

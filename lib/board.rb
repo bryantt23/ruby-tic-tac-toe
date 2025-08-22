@@ -39,5 +39,21 @@ class Board
         return row[0]
       end
     end
+
+    diagonal_right = []
+    for row in 0...@grid.length
+      diagonal_right.push(@grid[row][row])
+    end
+    if diagonal_right.uniq.count <= 1
+      return diagonal_right[0]
+    end
+
+    diagonal_left = []
+    for row in 0...@grid.length
+      diagonal_left.push(@grid[row][@grid.length - row - 1])
+    end
+    if diagonal_left.uniq.count <= 1
+      return diagonal_left[0]
+    end
   end
 end
