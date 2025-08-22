@@ -28,31 +28,29 @@ class Board
 
   def winner
     @grid.each do |row|
-      if row.uniq.count <= 1
+      if row.uniq.count == 1
         return row[0]
       end
     end
 
     transposed_grid = @grid.transpose
     transposed_grid.each do |row|
-      if row.uniq.count <= 1
+      if row.uniq.count == 1
         return row[0]
       end
     end
 
-    diagonal_right = []
-    for row in 0...@grid.length
-      diagonal_right.push(@grid[row][row])
+    diagonal_right = (0...@grid.length).map do |i|
+      @grid[i][i]
     end
-    if diagonal_right.uniq.count <= 1
+    if diagonal_right.uniq.count == 1
       return diagonal_right[0]
     end
 
-    diagonal_left = []
-    for row in 0...@grid.length
-      diagonal_left.push(@grid[row][@grid.length - row - 1])
+    diagonal_left = (0...@grid.length).map do |i|
+      @grid[i][@grid.length - i - 1]
     end
-    if diagonal_left.uniq.count <= 1
+    if diagonal_left.uniq.count == 1
       return diagonal_left[0]
     end
   end
