@@ -40,4 +40,45 @@ RSpec.describe Board do
       expect(board.valid_move?("abc")).to eq(false)
     end
   end
+
+  describe "#move" do
+    it "places the player's symbol in the chosen spot" do
+      board = Board.new
+      board.grid = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+      result = board.move("1", "X")
+
+      expect(board.grid[0][0]).to eq("X")   # top-left updated
+      expect(result).to eq(true)            # returns true on success
+    end
+    it "places the player's symbol in the center spot" do
+      board = Board.new
+      board.grid = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+      result = board.move("5", "O")
+
+      expect(board.grid[1][1]).to eq("O")   # center updated
+      expect(result).to eq(true)
+    end
+
+    it "places the player's symbol in the last row, last column" do
+      board = Board.new
+      board.grid = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+      result = board.move("9", "X")
+
+      expect(board.grid[2][2]).to eq("X")   # bottom-right updated
+      expect(result).to eq(true)
+    end
+
+    it "does not overwrite a taken spot and returns false" do
+      board = Board.new
+      board.grid = [["X", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+
+      result = board.move("1", "O")
+
+      expect(board.grid[0][0]).to eq("X")   # still X, unchanged
+      expect(result).to eq(false)
+    end
+  end
 end

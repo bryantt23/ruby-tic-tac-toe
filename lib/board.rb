@@ -15,4 +15,14 @@ class Board
     value = @grid[row][column]
     value != "X" && value != "O"
   end
+
+  def move(position, mark)
+    return false unless valid_move?(position)
+
+    index = position.to_i - 1
+    row = index / @grid.length
+    column = index % @grid.length
+    @grid[row][column] = mark
+    true
+  end
 end
