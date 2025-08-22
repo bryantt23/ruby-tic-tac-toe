@@ -81,4 +81,24 @@ RSpec.describe Board do
       expect(result).to eq(false)
     end
   end
+
+  describe "#winner" do
+    it "returns 'X' when the top row is all X" do
+      board = Board.new
+      board.grid = [["X", "X", "X"], ["4", "5", "6"], ["7", "8", "9"]]
+      expect(board.winner).to eq("X")
+    end
+
+    it "returns 'O' when the middle row is all O" do
+      board = Board.new
+      board.grid = [["1", "2", "3"], ["O", "O", "O"], ["7", "8", "9"]]
+      expect(board.winner).to eq("O")
+    end
+
+    it "returns 'X' when the left column is all X" do
+      board = Board.new
+      board.grid = [["X", "2", "3"], ["X", "5", "6"], ["X", "8", "9"]]
+      expect(board.winner).to eq("X")
+    end
+  end
 end

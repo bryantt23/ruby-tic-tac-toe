@@ -25,4 +25,19 @@ class Board
     @grid[row][column] = mark
     true
   end
+
+  def winner
+    @grid.each do |row|
+      if row.uniq.count <= 1
+        return row[0]
+      end
+    end
+
+    transposed_grid = @grid.transpose
+    transposed_grid.each do |row|
+      if row.uniq.count <= 1
+        return row[0]
+      end
+    end
+  end
 end
