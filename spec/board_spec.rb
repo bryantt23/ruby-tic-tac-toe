@@ -119,4 +119,24 @@ RSpec.describe Board do
       expect(board.winner).to be_nil
     end
   end
+
+  describe "#game_over?" do
+    it "returns true if there is a winner" do
+      board = Board.new
+      board.grid = [["X", "X", "X"], ["4", "5", "6"], ["7", "8", "9"]]
+      expect(board.game_over?).to eq(true)
+    end
+
+    it "returns false if there is no winner and the board is not full" do
+      board = Board.new
+      board.grid = [["X", "2", "3"], ["4", "O", "6"], ["7", "8", "9"]]  # still empty spots
+      expect(board.game_over?).to eq(false)
+    end
+
+    it "returns true if there is no winner and the board is full" do
+      board = Board.new
+      board.grid = [["X", "O", "X"], ["X", "O", "O"], ["O", "X", "X"]]  # full, no 3 in a row
+      expect(board.game_over?).to eq(true)
+    end
+  end
 end

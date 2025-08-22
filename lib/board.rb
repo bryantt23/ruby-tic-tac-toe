@@ -54,4 +54,12 @@ class Board
       return diagonal_left[0]
     end
   end
+
+  def game_over?
+    if winner
+      return true
+    end
+
+    @grid.flatten.all? { |elem| elem == "X" || elem == "O" }
+  end
 end
