@@ -6,6 +6,9 @@ class Board
   end
 
   def valid_move?(position)
+    if position.to_i < 0 || position.to_i > 9 || position.to_i.to_s != position
+      return false
+    end
     index = position.to_i - 1
     row = index / @grid.length
     column = index % @grid.length
