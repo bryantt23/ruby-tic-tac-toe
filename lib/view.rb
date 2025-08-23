@@ -13,4 +13,14 @@ class View
     end
     "#{winner} wins!"
   end
+
+  def show_replay_prompt
+    "Press Enter to play again or X to exit"
+  end
+
+  def show_board(grid)
+    grid.map do |row|
+      row.join(" | ")
+    end.join("\n---------\n")
+  end
 end
