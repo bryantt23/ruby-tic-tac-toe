@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "rdbg",
+            "name": "Debug game.rb (rdbg no bundler)",
+            "request": "launch",
+            "script": "ruby",
+            "args": [
+                "lib/game.rb"
+            ],
+            "stopOnEntry": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}
