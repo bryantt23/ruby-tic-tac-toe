@@ -9,7 +9,6 @@ class Game
     @player_x = Player.new("X")
     @player_o = Player.new("O")
     @current_player = @player_x
-    @current_game_over = false
   end
 
   def start_game
@@ -22,7 +21,7 @@ class Game
       # reset current player to Player X
       @current_player = @player_x
       # loop until board says game is over
-      while @current_game_over == false
+      while !@board.game_over?
         # call play_one_game
         play_one_game
       end
@@ -34,19 +33,19 @@ class Game
       puts @view.show_winner(@board.winner)
 
       # ask user if want to keep playing
-      continue_game = play_again?()
+      continue_game = play_again?
     end
   end
 
   private
 
   def play_again?
-    @view.show_replay_prompt()
+    puts @view.show_replay_prompt
     while user_input = gets.chomp
       case user_input
       when "X", "x"
         return false
-      when "\n"
+      when ""
         return true
       else
         @view.show_replay_prompt()
@@ -62,8 +61,6 @@ class Game
     # switch to the other player
     switch_player
     # end until loop
-    @current_game_over = @board.game_over?()
-    puts "current game over #{@current_game_over}"
   end
 
   def switch_player
