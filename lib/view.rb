@@ -8,7 +8,7 @@ class View
   end
 
   def show_winner(winner)
-    if winner == :tie
+    if winner == nil
       return "It was a Tie"
     end
     "#{winner} wins!"

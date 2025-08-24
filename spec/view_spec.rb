@@ -29,9 +29,9 @@ RSpec.describe View do
       expect(view.show_winner("O")).to eq("O wins!")
     end
 
-    it "returns 'It was a Tie' when given :tie" do
+    it "returns 'It was a Tie' when given nil" do
       view = View.new
-      expect(view.show_winner(:tie)).to eq("It was a Tie")
+      expect(view.show_winner(nil)).to eq("It was a Tie")
     end
   end
   describe "#show_replay_prompt" do
